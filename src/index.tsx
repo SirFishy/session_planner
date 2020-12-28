@@ -1,12 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import Sessions from './components/Sessions'
 import reportWebVitals from './reportWebVitals';
+import {Session} from "./api/Session";
+import {gen_story_nodes} from "./test/data-gen";
+
+const session: Session = {
+    name: "Test Session",
+    dateCreated: new Date(Date.now()),
+    tools: []
+}
+
+const nbd = gen_story_nodes();
+
+session.tools.push(nbd);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <Sessions name={session.name} dateCreated={session.dateCreated} tools={session.tools} />
   </React.StrictMode>,
   document.getElementById('root')
 );
