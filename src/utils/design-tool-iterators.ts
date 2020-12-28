@@ -21,8 +21,6 @@ export class NodeIterator implements Iterator<StoryNode> {
 
     private currentNode: StoryNode;
 
-    private previousNode: StoryNode;
-
     private visitedNodes: Set<number> = new Set();
 
     private visitedMemory: StoryNode[] = [];
@@ -32,7 +30,6 @@ export class NodeIterator implements Iterator<StoryNode> {
     constructor(collection: StoryNodeCollection) {
         this.collection = collection;
         this.currentNode = collection.rootNode;
-        this.previousNode = collection.rootNode;
         this.visitedMemory.push(collection.rootNode);
     }
 
