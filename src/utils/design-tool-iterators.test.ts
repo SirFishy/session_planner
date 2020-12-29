@@ -44,6 +44,13 @@ describe("NodeCollection iterator", () => {
             iterator.next();
             expect(iterator.valid()).toEqual(false);
         });
+
+        test("should throw error when next() is called if iterator is invalid", () => {
+            let iterator: Iterator<StoryNode> = collection.getIterator();
+            iterator.next();
+            expect(iterator.valid()).toEqual(false);
+            expect(() => iterator.next()).toThrowError("Iterator is no longer valid.")
+        })
     });
 
     describe("initialized with branching nodes", () => {

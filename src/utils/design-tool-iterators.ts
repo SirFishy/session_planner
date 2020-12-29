@@ -42,6 +42,9 @@ export class NodeIterator implements Iterator<StoryNode> {
     }
 
     next(): StoryNode {
+        if (!this.valid()) {
+            throw new Error("Iterator is no longer valid.");
+        }
         const returnNode: StoryNode = {
             _id: this.currentNode._id,
             description: this.currentNode.description,
