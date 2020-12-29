@@ -3,23 +3,6 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import App from "./App";
-import { MongoClient } from "mongodb";
-import assert from "assert";
-
-const mongo_client = require("mongodb").MongoClient;
-
-const url = "mongodb://localhost:27017";
-
-const dbName = "session_planner";
-
-const client = new MongoClient(url);
-
-client.connect(function (err) {
-  assert(null, err);
-  console.log("Connected successfully to the server.");
-  const db = client.db(dbName);
-  client.close();
-});
 
 ReactDOM.render(
   <React.StrictMode>
