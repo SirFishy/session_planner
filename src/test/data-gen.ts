@@ -3,37 +3,37 @@ import { StoryNode } from "../api/StoryNode";
 
 export function gen_story_nodes(): NodeBasedDesign {
   let root: StoryNode = {
-    _id: "0",
+    nodeId: "0",
     description: "root",
     connections: [],
   };
 
   let nodeA: StoryNode = {
-    _id: "1",
+    nodeId: "1",
     description: "A",
     connections: [],
   };
 
   let nodeB: StoryNode = {
-    _id: "2",
+    nodeId: "2",
     description: "B",
     connections: [],
   };
 
   let nodeC: StoryNode = {
-    _id: "3",
+    nodeId: "3",
     description: "C",
     connections: [],
   };
 
   let nodeD: StoryNode = {
-    _id: "4",
+    nodeId: "4",
     description: "D",
     connections: [],
   };
 
   let nodeE: StoryNode = {
-    _id: "5",
+    nodeId: "5",
     description: "E",
     connections: [],
   };

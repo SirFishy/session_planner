@@ -38,7 +38,7 @@ export class NodeIterator implements Iterator<StoryNode> {
   }
 
   key(): string {
-    return this.currentNode._id as string;
+    return this.currentNode.nodeId as string;
   }
 
   next(): StoryNode {
@@ -46,7 +46,7 @@ export class NodeIterator implements Iterator<StoryNode> {
       throw new Error("Iterator is no longer valid.");
     }
     const returnNode: StoryNode = {
-      _id: this.currentNode._id,
+      nodeId: this.currentNode.nodeId,
       description: this.currentNode.description,
       connections: this.currentNode.connections,
     };
@@ -75,8 +75,8 @@ export class NodeIterator implements Iterator<StoryNode> {
       } else
         for (let i = 0; i < tempNode.connections.length; i++) {
           const iterNode = tempNode.connections[i].node;
-          assert(iterNode._id);
-          if (!this.visitedNodes.has(iterNode._id)) {
+          assert(iterNode.nodeId);
+          if (!this.visitedNodes.has(iterNode.nodeId)) {
             nextNode = iterNode;
             break;
           }
@@ -84,7 +84,7 @@ export class NodeIterator implements Iterator<StoryNode> {
     } while (this.iteratorValid && nextNode === this.currentNode);
 
     // Save the state of the search
-    this.visitedNodes.add(nextNode._id as string);
+    this.visitedNodes.add(nextNode.nodeId as string);
     this.visitedMemory.push(nextNode);
     this.currentNode = nextNode;
     return returnNode;
@@ -92,9 +92,9 @@ export class NodeIterator implements Iterator<StoryNode> {
 
   private isNodeConnectionsVisited(node: StoryNode): boolean {
     for (let i = 0; i < node.connections.length; i++) {
-      const { _id } = node.connections[i].node;
-      assert(_id);
-      if (!this.visitedNodes.has(_id)) {
+      const { nodeId } = node.connections[i].node;
+      assert(nodeId);
+      if (!this.visitedNodes.has(nodeId)) {
         return false;
       }
     }
@@ -128,7 +128,7 @@ export class StoryNodeCollection implements Aggregator {
       const node = iterator.next();
       const visitedNodes: string[] = [];
       node.connections.forEach((connection) => {
-        visitedNodes.push(connection.node._id as string);
+        visitedNodes.push(connection.node.nodeId as string);
       });
 
       visitedNodes.forEach((id) => {
@@ -142,7 +142,7 @@ export class StoryNodeCollection implements Aggregator {
       });
     }
     visitedCount.forEach((value: number, key: string) => {
-      if (value < this.weakNodeCriteria && this.rootNode._id !== key) {
+      if (value < this.weakNodeCriteria && this.rootNode.nodeId !== key) {
         weakNodes.push(key);
       }
     });

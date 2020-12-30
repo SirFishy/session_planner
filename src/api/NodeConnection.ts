@@ -1,6 +1,7 @@
-import {StoryNode} from "./StoryNode";
+import { StoryNode } from "./StoryNode";
 
 export interface NodeConnection {
-    node: StoryNode
-    description: string
+  connectionId?: string;
+  node: StoryNode;
+  description: string;
 }

@@ -11,7 +11,7 @@ describe("NodeCollection iterator", () => {
   describe("initialized with one root node", () => {
     beforeEach(() => {
       root = {
-        _id: "0",
+        nodeId: "0",
         description: "hello",
         connections: [],
       };
