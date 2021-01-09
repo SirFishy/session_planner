@@ -1,7 +1,7 @@
-import { Schema } from "mongoose";
+import { Schema, Types } from "mongoose";
 import { StoryNodeSchema } from "./StoryNode";
 
 export const NodeConnectionSchema = new Schema({
-  node: { type: StoryNodeSchema, required: true },
+  node: { type: Types.ObjectId, ref: "StoryNode" },
   description: { type: String },
 });
