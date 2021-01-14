@@ -16,7 +16,11 @@ class App {
   }
 
   private async mongoSetup(): Promise<void> {
-    await mongoose.connect(this.mongoUrl);
+    await mongoose.connect(this.mongoUrl, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+    });
   }
 
   private config(): void {
